@@ -60,6 +60,7 @@ public class ContaBancaria {
         saldo -= valor;
         historico.add("Saque: -R$ " + String.format("%.2f", valor));
         System.out.println("✅ Saque de R$ " + String.format("%.2f", valor) + " realizado com sucesso!");
+        System.out.println("Saldo restante: R$ " + String.format("%.2f", saldo));
         return true;
     }
 
