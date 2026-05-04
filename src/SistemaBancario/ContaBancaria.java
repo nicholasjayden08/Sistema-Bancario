@@ -44,6 +44,7 @@ public class ContaBancaria {
         historico.add("Depósito: +R$ " + String.format("%.2f", valor));
 
         System.out.println("✅ Depósito de R$ " + String.format("%.2f", valor) + " realizado com sucesso!");
+        System.out.println("Saldo atual: R$ " + String.format("%.2f", saldo));
     }
 
     public boolean sacar(double valor) {
