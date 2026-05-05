@@ -53,7 +53,7 @@ public class SistemaBancario {
         System.out.println("\n========== CONTAS CADASTRADAS ==========");
         for (int i = 0; i < contas.size(); i++) {
             ContaBancaria conta = contas.get(i);
-            System.out.println((i + 1) + ". " + conta.getNumeroConta() + " - " + conta.getTitular() + " | Saldo: R$ " + String.format("%.2f", conta.getSaldo()));
+            System.out.println((i + 1) + ". " + conta.getTitular() + " | Saldo: R$ " + String.format("%.2f", conta.getSaldo()));
         }
         System.out.println("========================================\n");
     }
