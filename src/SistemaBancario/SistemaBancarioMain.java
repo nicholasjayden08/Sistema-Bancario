@@ -98,7 +98,7 @@ public class SistemaBancarioMain {
                     System.out.println("Nome do Titular: ");
                     String nomeRecupera = scanner.nextLine();
 
-                    System.out.println("Coloque o saldo atual de sua Conta: ");
+                    System.out.println("Coloque o saldo atual de sua conta: ");
                     double saldoRecupera = scanner.nextDouble();
                     scanner.nextLine();
 
