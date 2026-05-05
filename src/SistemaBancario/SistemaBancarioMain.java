@@ -95,6 +95,16 @@ public class SistemaBancarioMain {
                     sistema.listarTodasAsContas();
                     break;
                 case 8:
+                    System.out.println("Nome do Titular: ");
+                    String nomeRecupera = scanner.nextLine();
+
+                    System.out.println("Coloque o Exato Saldo Atual de sua Conta: ");
+                    double saldoRecupera = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    sistema.recuperarNumeroConta(nomeRecupera, saldoRecupera);
+                    break;
+                case 9:
                     rodando = false;
                     System.out.println("Encerrando o sistema...");
                     break;
@@ -114,7 +124,8 @@ public class SistemaBancarioMain {
         System.out.println("5. Ver Histórico");
         System.out.println("6. Transferir");
         System.out.println("7. Listar Conta");
-        System.out.println("8. Sair");
+        System.out.println("8. Recuperar Conta");
+        System.out.println("9. Sair");
         System.out.println("=============================");
         System.out.println("Escolha uma opção");
     }

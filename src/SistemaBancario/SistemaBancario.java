@@ -57,4 +57,17 @@ public class SistemaBancario {
         }
         System.out.println("========================================\n");
     }
+
+    public void recuperarNumeroConta(String nome, double saldo) {
+        for (ContaBancaria conta : contas) {
+            if (conta.getTitular().equalsIgnoreCase(nome) && conta.getSaldo() == saldo) {
+                System.out.println("\n✅ Conta Encontrada!");
+                System.out.println("Número da Conta: " + conta.getNumeroConta());
+                System.out.println("Titular da Conta: " + conta.getTitular());
+                System.out.println("Saldo: R$ " + String.format("%.2f", conta.getSaldo()));
+                return;
+            }
+        }
+        System.out.println("❌ Conta não encontrada com as informações fornecidas");
+    }
 }
