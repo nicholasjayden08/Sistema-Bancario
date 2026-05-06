@@ -6,12 +6,14 @@ public class ContaBancaria {
     private String titular;
     private String numeroConta;
     private double saldo;
+    private String senha;
     private ArrayList<String> historico;
 
-    public ContaBancaria(String titular, String numeroConta, double saldoInicial) {
+    public ContaBancaria(String titular, String numeroConta, double saldoInicial, String senha) {
         this.titular = titular;
         this.numeroConta = numeroConta;
         this.saldo = saldoInicial;
+        this.senha = senha;
         this.historico = new ArrayList<>();
 
         historico.add("Conta criada com saldo inicial: R$ " + String.format("%.2f", saldoInicial));
@@ -27,6 +29,10 @@ public class ContaBancaria {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public boolean temNumeroConta(String numero) {
@@ -102,5 +108,9 @@ public class ContaBancaria {
 
         System.out.println("✅ Tranferencia de R$ " + String.format("%.2f", valor) + " realizada com sucesso!");
         return true;
+    }
+
+    public boolean verificarSenha(String senhaDigitada) {
+        return this.senha.equals(senhaDigitada);
     }
 }
