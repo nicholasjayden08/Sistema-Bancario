@@ -31,7 +31,6 @@ public class SistemaBancario {
                 return conta;
             }
         }
-        System.out.println("❌ Conta não encontrada");
         return null;
     }
 

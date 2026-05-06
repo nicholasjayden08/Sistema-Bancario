@@ -29,10 +29,7 @@ public class SistemaBancarioMain {
                     sistema.criarConta(titular, numeroConta, saldoInicial);
                     break;
                 case 2:
-                    System.out.println("Número da Conta: ");
-                    String numeroContaDeposito = scanner.nextLine();
-
-                    ContaBancaria contaDeposito = sistema.buscarConta(numeroContaDeposito);
+                    ContaBancaria contaDeposito = buscarComTentativas(scanner, sistema, "Depositar");
                     if (contaDeposito != null) {
                         System.out.println("Valor a depositar: R$ ");
                         double valorDeposito = scanner.nextDouble();
@@ -42,10 +39,7 @@ public class SistemaBancarioMain {
                     }
                     break;
                 case 3:
-                    System.out.println("Número da Conta: ");
-                    String numeroContaSaque = scanner.nextLine();
-
-                    ContaBancaria contaSaque = sistema.buscarConta(numeroContaSaque);
+                    ContaBancaria contaSaque = buscarComTentativas(scanner, sistema, "Sacar");
                     if (contaSaque != null) {
                         System.out.println("Valor a sacar: R$ ");
                         double valorSaque = scanner.nextDouble();
@@ -55,39 +49,36 @@ public class SistemaBancarioMain {
                     }
                     break;
                 case 4:
-                    System.out.println("Número da Conta: ");
-                    String numeroContaSaldo = scanner.nextLine();
-
-                    ContaBancaria contaSaldo = sistema.buscarConta(numeroContaSaldo);
+                    ContaBancaria contaSaldo = buscarComTentativas(scanner, sistema, "Ver Saldo");
                     if (contaSaldo != null) {
                         contaSaldo.exibirSaldo();
                     }
                     break;
                 case 5:
-                    System.out.println("Número da Conta: ");
-                    String numeroContaHistorico = scanner.nextLine();
-
-                    ContaBancaria contaHistorico = sistema.buscarConta(numeroContaHistorico);
+                    ContaBancaria contaHistorico = buscarComTentativas(scanner, sistema, "Ver Histórico");
                     if (contaHistorico != null) {
                         contaHistorico.exibirHistorico();
                     }
                     break;
                 case 6:
-                    System.out.println("Número da Conta do Emissor: ");
-                    String numeroContaEnvio = scanner.nextLine();
-
-                    ContaBancaria contaEnvio = sistema.buscarConta(numeroContaEnvio);
+                    ContaBancaria contaEnvio = buscarComTentativas(scanner, sistema, "Conta do emissor");
                     if (contaEnvio != null) {
-                        System.out.println("Número da Conta do Recepitor");
-                        String numeroContaRecebimento = scanner.nextLine();
+                        ContaBancaria contaRecebimento = buscarComTentativas(scanner, sistema, "Conta do recepitor)");
 
-                        ContaBancaria contaRecebimento = sistema.buscarConta(numeroContaRecebimento);
                         if (contaRecebimento != null) {
+                            if (contaEnvio.getNumeroConta().equals(contaRecebimento.getNumeroConta())) {
+                                System.out.println("❌ Você não pode tranferir para sua própria conta");
+                                break;
+                            }
+
                             System.out.println("Valor a Transferir: R$ ");
                             double valorTransferencia = scanner.nextDouble();
                             scanner.nextLine();
 
                             contaEnvio.transferir(valorTransferencia, contaRecebimento);
+                        }
+                        else {
+                            System.out.println("❌ Conta destinatária não encontrada!");
                         }
                     }
                     break;
@@ -113,6 +104,31 @@ public class SistemaBancarioMain {
             }
         }
         scanner.close();
+    }
+
+    private static ContaBancaria buscarComTentativas(Scanner scanner, SistemaBancario sistema, String operacao) {
+        int tentativas = 2;
+
+        while (tentativas > 0) {
+            System.out.println("(" + operacao + ") Digite o número da conta: ");
+            String numeroConta = scanner.nextLine();
+
+            ContaBancaria conta = sistema.buscarConta(numeroConta);
+
+            if (conta != null) {
+                return conta;
+            }
+
+            tentativas--;
+
+            if (tentativas > 0) {
+                System.out.println("❌ Conta não encontrada! Tente novamente.");
+            }
+            else {
+                System.out.println("❌ Conta não encontrada!");
+            }
+        }
+        return null;
     }
 
     public static void exibirMenu() {
