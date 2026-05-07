@@ -13,10 +13,10 @@ A simple banking system implemented in Java with support for multiple accounts a
 - ✅ List all accounts
 
 ## Project Structure
-src/SistemaBancario/
-├── ContaBancaria.java       - Represents a single bank account
-├── SistemaBancario.java     - Manages all bank accounts
-└── SistemaBancarioMain.java - User interface and menu
+
+* `ContaBancaria.java` - Represents a single bank account
+* `SistemaBancario.java` - Manages all bank accounts
+* `SistemaBancarioMain.java` - User interface and menu
 
 ## How to Run
 
